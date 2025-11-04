@@ -10,8 +10,10 @@ def read_file(file_name):
 
 def main():
 
-    resume = read_file('resue.txt')
+    resume = read_file('resume.txt')
     jobdescription = read_file('jobdescription.txt')
+
+    #from here do ai/ml stuff
 
     print("Resume Content:")
     print(resume)
@@ -21,7 +23,6 @@ def main():
 
 if __name__ == "__main__":
     main()
-
 
 
 #How to tie sentiment analysis into:
