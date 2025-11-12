@@ -45,6 +45,6 @@ nltk.download('vader_lexicon')
 sia = SentimentIntensityAnalyzer()
 print(sia.polarity_scores("This game is ridiculously good!!!"))
 
-# output of the above code
+# expected output of the above code
 {'neg': 0.262, 'neu': 0.327, 'pos': 0.412, 'compound': 0.3348}
 ```
