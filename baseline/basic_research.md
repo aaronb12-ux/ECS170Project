@@ -1,3 +1,60 @@
+### Similarity Analysis
+
+Jaccard Similarity Analysis:
+- It measures the similarity between two sets. It is calculated by dividing the size of the intersection of the two sets by the size of their union. It is often used to compare the similarity of two text documents or strings based on their shared words or tokens.
+- Example:
+```python
+from nltk.corpus import stopwords
+from nltk.tokenize import word_tokenize
+import nltk
+import string
+
+nltk.download('punkt_tab')
+nltk.download("punkt")
+nltk.download("stopwords")
+
+def jaccard_similarity(text1, text2):
+    stop = set(stopwords.words("english"))
+    # tokenize and clean
+    def clean(t):
+        return {w.lower() for w in word_tokenize(t)
+                if w.isalnum() and w.lower() not in stop}
+    set1, set2 = clean(text1), clean(text2)
+    return len(set1 & set2) / len(set1 | set2 or {1})
+
+a = "The quick brown fox jumps over the lazy dog"
+b = "A quick brown cat sleeps near a lazy dog"
+
+print("Jaccard similarity:", round(jaccard_similarity(a, b), 3))
+
+```
+
+WordNet-based Similarity Analysis:
+- NLTK provides access to WordNet, a lexical database that groups English words into sets of synonyms called synsets and records relationships between them.
+- Example:
+```python
+from nltk.corpus import wordnet as wn
+import nltk
+nltk.download("wordnet")
+nltk.download("omw-1.4")
+
+def wordnet_similarity(word1, word2):
+    syns1 = wn.synsets(word1)
+    syns2 = wn.synsets(word2)
+    if not syns1 or not syns2:
+        return 0
+    # pick max path similarity among all sense pairs
+    sims = [s1.path_similarity(s2) or 0 for s1 in syns1 for s2 in syns2]
+    return max(sims)
+
+print("Similarity(car, automobile):", wordnet_similarity("car", "automobile"))
+print("Similarity(car, banana):", wordnet_similarity("car", "banana"))
+```
+  
+
+Hybrid Similarity Analysis:
+- It is an integrated method that combines Jaccard similarity and WordNet-based semantic similarity.
+
 Sentiment Analysis:
 
 VADER (Valence Aware Dictionary and sEntiment Reasoner)
