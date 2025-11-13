@@ -1,4 +1,5 @@
  <span style="font-size: 2px; line-height = 5.0;">
+
 # Core Questions
 - How has your project evolved since the proposal? Have there been any changes to the project idea or approach?
 - What milestones or significant steps have you achieved so far?
@@ -16,6 +17,7 @@
 # Contribution & Work Division
 
 </span>
+
 
 
 
