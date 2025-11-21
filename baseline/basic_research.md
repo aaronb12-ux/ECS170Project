@@ -1,6 +1,6 @@
 # Baseline Model
 
-## TF-IDF + Cosine Similarity
+## TF-IDF + Cosine Similarity 
 **TF-IDF**
 - a statistical method used in similarity analysis to determine the importance of a word in a document relative to a larger collection of documents.
 - It is calculated by multiplying the Term Frequency (how often a word appears in a document) by the Inverse Document Frequency (how rare a word is across all documents). This score can then be used to represent documents as vectors, allowing for similarity analysis, such as with the cosine similarity metric.
