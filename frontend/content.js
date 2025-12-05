@@ -8,6 +8,7 @@ function setTab(name) {
 }
 document.getElementById('tab-resume').addEventListener('click', () => setTab('resume'));
 document.getElementById('tab-analyze').addEventListener('click', () => setTab('analyze'));
+document.getElementById('tab-help').addEventListener('click', () => setTab('help'))
 
 async function getStoredResume() {
   const o = await B.storage.local.get('resume_text');
@@ -135,4 +136,5 @@ document.getElementById('analyze-manual-button').addEventListener('click', async
     document.getElementById('result').innerText = String(resumeText);
   }
 });
+
 
