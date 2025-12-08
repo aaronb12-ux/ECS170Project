@@ -109,7 +109,26 @@ document.getElementById('extract-button').addEventListener('click', async () => 
       return;
     }
     const data = await callAnalyzeAPI(resumeText, jobText);
-    document.getElementById('result').innerText = JSON.stringify(data, null, 2);
+
+	  const formattedResponse = `
+<strong>Score:</strong> ${(data.score * 100).toFixed(2)}%
+<strong>Strengths:</strong><ul>
+${data.strengths
+.map(strength => strength.trim())
+.filter(strength => strength) // Remove empty entries
+.map(strength => {
+const parts = strength.split('|');
+const description = parts[0]?.trim() || '';
+const similarity = parts[parts.length - 1]?.trim().replace('similarity: ', '') || '';
+return `<li>${description}</li>`;
+}).join('')}</ul><strong>Weaknesses:</strong><ul>
+${data.weaknesses
+.map(weakness => weakness.trim())
+.filter(weakness => weakness) // Remove empty entries
+.map(weakness => `<li>${weakness}</li>`).join('')}</ul>
+`;
+
+    document.getElementById('result').innerHTML = formattedResponse;
   } catch (err) {
     console.error(err);
     document.getElementById('result').innerText = String(err);
@@ -129,12 +148,32 @@ document.getElementById('analyze-manual-button').addEventListener('click', async
       return;
     }
     document.getElementById('result').innerText = 'Analyzing...';
+
     const data = await callAnalyzeAPI(resumeText, jobText);
-    document.getElementById('result').innerText = JSON.stringify(data, null, 2);
+
+	  const formattedResponse = `
+<strong>Score:</strong> ${(data.score * 100).toFixed(2)}%
+<strong>Strengths:</strong><ul>
+${data.strengths
+.map(strength => strength.trim())
+.filter(strength => strength) // Remove empty entries
+.map(strength => {
+const parts = strength.split('|');
+const description = parts[0]?.trim() || '';
+const similarity = parts[parts.length - 1]?.trim().replace('similarity: ', '') || '';
+return `<li>${description}</li>`;
+}).join('')}</ul><strong>Weaknesses:</strong><ul>
+${data.weaknesses
+.map(weakness => weakness.trim())
+.filter(weakness => weakness) // Remove empty entries
+.map(weakness => `<li>${weakness}</li>`).join('')}</ul>
+`;
+    document.getElementById('result').innerHTML = formattedResponse;
   } catch (err) {
     console.error(err);
-    document.getElementById('result').innerText = String(resumeText);
+    document.getElementById('result').innerText = 'An error occurred while analyzing the data.';
   }
 });
+
 
 
