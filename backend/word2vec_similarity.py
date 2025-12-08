@@ -82,7 +82,7 @@ def format_w2v_json_sorted(analysis):
     weaknesses = [jd for jd in analysis.get("all_jd_lines", []) if jd not in all_jd_lines]
 
     return {
-        "similarity_score": float(analysis["overall_score"]),
+        "similarityScore": float(analysis["overall_score"]),
         "strengths": strengths,
         "weaknesses": weaknesses
     }

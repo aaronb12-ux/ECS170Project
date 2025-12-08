@@ -77,7 +77,7 @@ def format_bart_json_sorted(analysis):
     ]
 
     return {
-        "similarity_score": float(analysis["file_similarity"]),
+        "similarityScore": float(analysis["file_similarity"]),
         "strengths": strengths,
         "weaknesses": weaknesses
     }

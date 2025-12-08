@@ -1,6 +1,6 @@
 from flask import Flask, request, jsonify
 from flask_cors import CORS
-#from backend.main import run_baseline_overlap, run_bert, run_w2v, run_bart
+from backend.main import run_bert_similarity, run_w2v_similarity, run_bart_similarity
 from baseline.tf_idf.baseline_tf_idf import run_baseline_tfidf
 
 
@@ -19,12 +19,12 @@ def analyze():
         return jsonify({"error": "job missing"}), 400
 
     # run all models
-    baseline_result = run_baseline_tfidf(resume, job)
-    #bert_result = run_bert(resume, job)
-    #w2v_result = run_w2v(resume, job)
-    #bart_result = run_bart(resume, job)
+    #result = run_baseline_tfidf(resume, job)
+    #result = run_bert_similarity(resume, job)
+    #result = run_w2v_similarity(resume, job)
+    result = run_bart_similarity(resume, job)
 
-    result = baseline_result #Can change/comment out model calls depending on which to run
+    #result = baseline_result #Can change/comment out model calls depending on which to run
 
     response = {
         "score": result["similarityScore"],
